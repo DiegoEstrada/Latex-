@@ -1,0 +1,109 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Diego Estrada Granados\\Grupo:2CM3}
+\title{Instituto Politécnico Nacional}
+\begin{document}
+\maketitle
+\begin{center}
+\paragraph*{\textbf{Control de acceso en Java}}
+\end{center}
+
+\section{Introducción}
+Antes de proceder con la explicación del concepto de control de acceso y su utilización en Java, se procederá a explicar el concepto de paquete (package).
+Un paquete es una agrupación de clases e interfaces que facilitan la gestión de acceso a las clases, los paquetes permiten proteger las clases restringiendo que clases pueden acceder a que clases, y permite definir un espacio de nombres mediante el cual se pueden organizar y localizar las clases.
+A lo largo de todos los ejemplos y problemas hemos utilizado paquetes. Por ejemplo cuando se utiliza System.out.println(“Hola a todos”); se está utilizando la clase System, que se encuentra en el paquete java.lang. Sin embargo, para utilizar la clase System no se debe hacer nada especial, esto se debe a que por defecto la máquina virtual de java importa tres paquetes, debido a que el uso de las clases de estos paquetes es muy frecuente.
+
+\begin{itemize}
+\item java.lang
+\item El paquete actual. Es decir, el paquete al que pertenece la clase que se está definiendo 
+\item El paquete por defecto El paquete que no tiene ningún nombre 
+\end{itemize}
+
+Los paquetes pueden considerarse como bibliotecas de clases. El acceso a las clases de un paquete que nos interesen para nuestro programa se puede hacer de varias maneras 
+
+\begin{itemize}
+\item Usando el nombre de la clase java.util.Date nuevaFecha;
+\item Importando la clase Import java.util.Date;
+\item Importando todo el paquete Import java.util.*; 
+\end{itemize}
+
+\section{Métodos de acceso}
+Los métodos de acceso permiten controlar quien accede a que en Java. El quien se refiere a qué clases pueden acceder. Los modificadores que se pueden aplicar son 
+\subsection*{Public}
+Indica que cualquier otra clase tiene acceso, sin importar que clase que accede y la accedida este en el mismo paquete o no, o que tengan alguna relación o herencia.
+\subsection*{Private}
+Indica que el acceso está restringido a la propia clase, es decir que no se puede acceder a través de otras clases
+\subsection*{Package}
+Indica que el acceso está permitido para todas las clases que pertenezcan al mismo paquete que la clase a la que se quiere acceder 
+\subsection*{Protected}
+Indica que una clase solamente puede ser utilizada desde clases que estén en el mismo paquete o clase, o desde clases que deben haber heredado de la clase con acceso protected
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width = 7 cm]{Macceso.PNG}
+\includegraphics[width = 16 cm]{Cacceso.PNG}
+\caption{Modificadores de acceso}
+\end{figure}
+
+\section{Otros tipos de modificadores}
+Las definiciones de métodos y atributos pueden tener otros tipos de modificadores además de los ya vistos como lo son:
+\subsection*{Static}
+Sirve para crear miembros que pertenecen a la clase, y no a una instancia de la clase. Esto implica, entre otras cosas, que no es necesario crear un objeto de la clase para poder acceder a estos atributos y métodos.
+Dos aspectos característicos de utilizar el calificador static en un elemento Java son los siguientes:
+
+\begin{itemize}
+\item No puede ser generada ninguna instancia (uso de new) de un elemento static puesto que solo existe una instancia.
+\item Todos los elementos definidos dentro de una estructura static deben ser static ellos mismos, o bien, poseer una instancia ya definida para poder ser invocados.
+\end{itemize}
+
+\subsection*{Final}
+Indica que una variable, método o clase no se va a modificar, lo cuál puede ser útil para añadir más semántica, por cuestiones de rendimiento, y para detectar errores.
+
+\begin{itemize}
+\item Si una variable se marca como final, no se podrá asignar un nuevo valor a la variable.
+\item Si una clase se marca como final, no se podrá extender la clase.
+\item Si es un método el que se declara como final, no se podrá sobreescribir.
+
+\end{itemize}
+
+\subsection*{Abstract}
+La palabra clave abstract indica que no se provee una implementación para un cierto método, sino que la implementación vendrá dada por las clases que extiendan la clase actual. Una clase que tenga uno o más métodos abstract debe declararse como abstract a su vez.
+
+\subsection*{Traseint}
+Utilizado para indicar que los atributos de un objeto no son parte persistente del objeto o bien que estos no deben guardarse y restaurarse utilizando el mecanismo de serialización estándar.
+
+\subsection*{Volatile y Sinchronized}
+Synchronized se utiliza  sobre los atributos de los objetos para indicar al compilador que es posible que dicho atributo vaya a ser modificado por varios threads de forma simultánea y asíncrona, y que no queremos guardar una copia local del valor para cada thread a modo de caché, sino que queremos que los valores de todos los threads estén sincronizados en todo momento, asegurando así la visibilidad del valor actualizado a costa de un pequeño impacto en el rendimiento.
+
+
+Volatile es más simple y más sencillo que synchronized, lo que implica también un mejor rendimiento. Sin embargo volatile, a diferencia de synchronized, no proporciona atomicidad, lo que puede hacer que sea más complicado de utilizar.
+
+
+Synchronized se diferencia de volatile entre otras cosas en que este modificador se utiliza sobre bloques de código y métodos, y no sobre variables. Al utilizar synchronized sobre un bloque se añade entre paréntesis una referencia a un objeto que utilizaremos a modo de lock.
+
+
+
+
+\subsection*{Strictfp}
+Es un modificador de lo más esotérico, muy poco utilizado y conocido cuyo nombre procede de strict floating point, o punto flotante estricto.
+Su uso sobre una clase, interfaz o método sirve para mejorar su portabilidad haciendo que los cálculos con números flotantes se restrinjan a los tamaños definidos por el estándar de punto flotante de la IEEE (float y double), en lugar de aprovechar toda la precisión que la plataforma en la que estemos corriendo el programa pudiera ofrecernos.
+
+\paragraph{*Todos los modificadores, al ser palabras reservadas por el lenguaje, deben ser escritas en minúsculas*}
+
+\section{Referencias}
+
+\begin{itemize}
+\item Programación orientada a objetos con Java, Francisco Durán, Francisco Gutiérrez, Ernesto Pimentel, Editorial Clara María de la Fuente, 2007, págs 179- 186  
+\item http://mundogeek.net/archivos/2009/03/30/modificadores-en-java/
+
+
+\end{itemize}
+
+
+\end{document}
